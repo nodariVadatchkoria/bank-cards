@@ -1,103 +1,344 @@
-import Image from "next/image";
+'use client';
+
+import { Suspense, useState } from 'react';
+import { X } from 'lucide-react';
+import SearchBar from '@/components/SearchBar';
+import FilterPills from '@/components/FilterPills';
+import CardTile from '@/components/CardTile';
+import CardModal from '@/components/CardModal';
+import ScrollToTop from '@/components/ScrollToTop';
+import LanguageProvider from '@/components/LanguageProvider';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { CardItem } from '@/lib/types';
+import { useQueryState } from '@/lib/useQueryState';
+import { useLanguage } from '@/lib/useLanguage';
+import { filterCards, hasActiveFilters, countActiveFilters, createEmptyFilters } from '@/lib/filtering';
+import cardsData from '@/data/cards.json';
+
+function CardCatalogContent() {
+  const { filters, updateFilters, setFilters } = useQueryState();
+  const { t, mounted } = useLanguage();
+  const [cards] = useState<CardItem[]>(cardsData as CardItem[]);
+  const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Don't render until mounted to prevent hydration issues
+  if (!mounted) {
+    return (
+      <div style={{ 
+        minHeight: '100vh',
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        Loading...
+      </div>
+    );
+  }
+  
+  const filteredCards = filterCards(cards, filters);
+  const activeFiltersCount = countActiveFilters(filters);
+  const hasFilters = hasActiveFilters(filters);
+
+  // Use consistent values for filtering regardless of language
+  const cardTypes = ['Debit', 'Credit'];
+  const networks = ['Visa', 'MasterCard'];
+  
+  // Map display labels for UI
+  const cardTypeLabels = { 'Debit': t.debit, 'Credit': t.credit };
+  const getCardTypeLabel = (type: string) => cardTypeLabels[type as keyof typeof cardTypeLabels] || type;
+
+  const clearAllFilters = () => {
+    setFilters(createEmptyFilters());
+  };
+
+  const openCardModal = (card: CardItem) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+  };
+
+  const closeCardModal = () => {
+    setIsModalOpen(false);
+    setSelectedCard(null);
+  };
+
+  return (
+    <div style={{ minHeight: '100vh' }}>
+      {/* Header */}
+      <header style={{ 
+        backgroundColor: '#fbbf24', 
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
+        borderBottom: '1px solid rgba(229, 231, 235, 0.5)' 
+      }}>
+        <div style={{ 
+          maxWidth: '80rem', 
+          margin: '0 auto', 
+          padding: '1.5rem 1rem',
+          textAlign: 'center'
+        }}>
+          {/* Language Switcher */}
+          <div style={{ 
+            position: 'absolute', 
+            top: '1rem', 
+            right: '1rem',
+            zIndex: 10
+          }}>
+            <LanguageSwitcher />
+          </div>
+
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <h1 style={{ 
+              fontSize: '1.875rem', 
+              fontWeight: '700', 
+              color: '#111827', 
+              marginBottom: '0.5rem',
+              margin: '0 0 0.5rem 0'
+            }}>
+              {t.title}
+            </h1>
+            <p style={{ 
+              color: '#6b7280', 
+              maxWidth: '28rem', 
+              margin: '0 auto',
+              fontSize: '0.95rem',
+              lineHeight: '1.5',
+              padding: '0 1rem'
+            }}>
+              {t.subtitle}
+            </p>
+          </div>
+          
+          {/* Search Bar */}
+          <div className="search-container" style={{ 
+            maxWidth: '18rem', 
+            width: '100%',
+            margin: '0 auto 1.5rem',
+            padding: '0 1rem'
+          }}>
+            <SearchBar
+              value={filters.query}
+              onChange={(query) => updateFilters({ query })}
+              placeholder={t.searchPlaceholder}
+            />
+          </div>
+          
+          {/* Filters */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+              gap: '1rem',
+              maxWidth: '48rem',
+              margin: '0 auto',
+              padding: '0 0.5rem'
+            }}>
+              <FilterPills
+                title={t.type}
+                options={cardTypes}
+                selected={filters.cardTypes}
+                onChange={(cardTypes) => updateFilters({ cardTypes })}
+                getLabel={getCardTypeLabel}
+              />
+              <FilterPills
+                title={t.network}
+                options={networks}
+                selected={filters.networks}
+                onChange={(networks) => updateFilters({ networks })}
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main style={{ 
+        maxWidth: '80rem', 
+        margin: '0 auto', 
+        padding: '2rem 1rem',
+        textAlign: 'center'
+      }}>
+        {/* Results header */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          marginBottom: '1.5rem' 
+        }}>
+          <div style={{ 
+            fontSize: '1.125rem', 
+            fontWeight: '600', 
+            color: '#1f2937',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            padding: '0.75rem 1.5rem',
+            borderRadius: '0.75rem',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.3)'
+          }}>
+            {filteredCards.length === cards.length 
+              ? `${t.showingAll} ${cards.length} ${t.cards}`
+              : `${filteredCards.length} ${t.showingFiltered} ${cards.length} ${t.cards}`
+            }
+          </div>
+          
+          {hasFilters && (
+            <button
+              onClick={clearAllFilters}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 0.75rem',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                color: '#374151',
+                backgroundColor: 'white',
+                border: '1px solid #d1d5db',
+                borderRadius: '0.5rem',
+                cursor: 'pointer'
+              }}
+            >
+              <X style={{ width: '1rem', height: '1rem' }} />
+              {t.clearAllFilters}
+            </button>
+          )}
+        </div>
+
+        {/* Cards Grid */}
+        {filteredCards.length > 0 ? (
+          <div className="card-grid">
+            {filteredCards.map((card) => (
+              <CardTile
+                key={card.id}
+                card={card}
+                onClick={() => openCardModal(card)}
+              />
+            ))}
+          </div>
+        ) : (
+          /* Empty State */
+          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+            <div style={{ maxWidth: '28rem', margin: '0 auto' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{
+                  margin: '0 auto',
+                  width: '4rem',
+                  height: '4rem',
+                  backgroundColor: '#f3f4f6',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <X style={{ width: '2rem', height: '2rem', color: '#9ca3af' }} />
+                </div>
+              </div>
+              <h3 style={{ 
+                fontSize: '1.125rem', 
+                fontWeight: '500', 
+                color: '#111827', 
+                marginBottom: '0.5rem' 
+              }}>
+                {t.noCardsMatch}
+              </h3>
+              <p style={{ color: '#6b7280', marginBottom: '1rem' }}>
+                {t.tryAdjusting}
+              </p>
+              {hasFilters && (
+                <button
+                  onClick={clearAllFilters}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.5rem 1rem',
+                    backgroundColor: '#2563eb',
+                    color: 'white',
+                    fontWeight: '500',
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  {t.clearAllFilters}
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </main>
+
+      {/* Mobile Sticky Filter Bar */}
+      {hasFilters && (
+        <div className="mobile-filter-bar" style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: 'white',
+          borderTop: '1px solid #e5e7eb',
+          padding: '0.75rem 1rem',
+          boxShadow: '0 -4px 6px -1px rgba(0, 0, 0, 0.1)'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
+              {activeFiltersCount} {activeFiltersCount === 1 ? t.filter : t.filters} {t.filtersActive}
+            </span>
+            <button
+              onClick={clearAllFilters}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 0.75rem',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                color: '#2563eb',
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <X style={{ width: '1rem', height: '1rem' }} />
+              Clear all
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
+
+      {/* Card Modal */}
+      {selectedCard && (
+        <CardModal
+          card={selectedCard}
+          isOpen={isModalOpen}
+          onClose={closeCardModal}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <LanguageProvider>
+      <Suspense fallback={
+        <div style={{ 
+          minHeight: '100vh', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center' 
+        }}>
+          Loading...
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      }>
+        <CardCatalogContent />
+      </Suspense>
+    </LanguageProvider>
   );
 }

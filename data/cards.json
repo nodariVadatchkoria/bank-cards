@@ -1,0 +1,184 @@
+[
+  {
+    "id": "midnight-gradient",
+    "name": "Midnight Gradient",
+    "issuerNetwork": "Visa",
+    "cardType": "Debit",
+    "image": "/cards/midnight-gradient.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI w/ 3mm bleed",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Matte",
+      "special": ["Embossing"]
+    },
+    "tags": ["dark", "gradient", "minimal"],
+    "description": "Elegant midnight gradient design with subtle texture and premium feel.",
+    "features": ["No foreign transaction fees", "Chip & PIN security", "Contactless payments"],
+    "fees": {
+      "annual": "Free",
+      "transaction": "Free",
+      "foreign": "Free"
+    }
+  },
+  {
+    "id": "aurora-foil",
+    "name": "Aurora Foil",
+    "issuerNetwork": "MasterCard",
+    "cardType": "Credit",
+    "image": "/cards/aurora-foil.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI + Silver Foil",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Glossy",
+      "special": ["Foil Silver"]
+    },
+    "tags": ["foil", "colorful", "premium"],
+    "description": "Vibrant aurora-inspired design with premium silver foil accents.",
+    "features": ["2% cashback on all purchases", "Travel insurance", "Extended warranty"],
+    "fees": {
+      "annual": "$95",
+      "transaction": "Free",
+      "foreign": "2.7%"
+    }
+  },
+  {
+    "id": "abstract-waves",
+    "name": "Abstract Waves",
+    "issuerNetwork": "MasterCard",
+    "cardType": "Debit",
+    "image": "/cards/abstract-waves.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI w/ 3mm bleed",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Satin"
+    },
+    "tags": ["abstract", "waves", "modern"],
+    "description": "Contemporary abstract wave design with flowing organic shapes.",
+    "features": ["ATM fee reimbursement", "Mobile banking", "Fraud protection"],
+    "fees": {
+      "annual": "Free",
+      "transaction": "$1.50 international",
+      "foreign": "1%"
+    }
+  },
+  {
+    "id": "gold-foil",
+    "name": "Gold Foil",
+    "issuerNetwork": "Visa",
+    "cardType": "Credit",
+    "image": "/cards/gold-foil.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI + Gold Foil",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Glossy",
+      "special": ["Foil Gold", "Embossing"]
+    },
+    "tags": ["gold", "luxury", "premium"],
+    "description": "Luxurious gold foil design with embossed elements for ultimate prestige.",
+    "features": ["3% cashback on dining", "Airport lounge access", "Concierge service"],
+    "fees": {
+      "annual": "$250",
+      "transaction": "Free",
+      "foreign": "Free"
+    }
+  },
+  {
+    "id": "blue-pattern",
+    "name": "Blue Pattern",
+    "issuerNetwork": "MasterCard",
+    "cardType": "Credit",
+    "image": "/cards/blue-pattern.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI w/ 3mm bleed",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Matte"
+    },
+    "tags": ["blue", "pattern", "geometric"],
+    "description": "Sophisticated blue geometric pattern with contemporary appeal.",
+    "features": ["1.5% cashback on all purchases", "No annual fee", "Fraud monitoring"],
+    "fees": {
+      "annual": "Free",
+      "transaction": "Free",
+      "foreign": "2.7%"
+    }
+  },
+  {
+    "id": "emerald-luxury",
+    "name": "Emerald Luxury",
+    "issuerNetwork": "Visa",
+    "cardType": "Credit",
+    "image": "/cards/emerald-luxury.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI + Spot UV",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Glossy",
+      "special": ["Spot UV", "Metallic Ink"]
+    },
+    "tags": ["emerald", "luxury", "metallic"],
+    "description": "Sophisticated emerald design with metallic accents and UV coating.",
+    "features": ["5% cashback on travel", "Priority customer service", "Global acceptance"],
+    "fees": {
+      "annual": "$450",
+      "transaction": "Free",
+      "foreign": "Free"
+    }
+  },
+  {
+    "id": "rose-gold-elite",
+    "name": "Rose Gold Elite",
+    "issuerNetwork": "MasterCard",
+    "cardType": "Debit",
+    "image": "/cards/rose-gold-elite.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI + Rose Gold Foil",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Satin",
+      "special": ["Foil Rose Gold"]
+    },
+    "tags": ["rose-gold", "elite", "feminine"],
+    "description": "Elegant rose gold design with premium finish and subtle texture.",
+    "features": ["Unlimited ATM access", "Real-time notifications", "Spending insights"],
+    "fees": {
+      "annual": "Free",
+      "transaction": "Free worldwide",
+      "foreign": "Free"
+    }
+  },
+  {
+    "id": "carbon-black",
+    "name": "Carbon Black",
+    "issuerNetwork": "Visa",
+    "cardType": "Debit",
+    "image": "/cards/carbon-black.svg",
+    "printConfig": {
+      "name": "CMYK 300DPI w/ Carbon Texture",
+      "dpi": 300,
+      "colorProfile": "CMYK",
+      "bleedMm": 3,
+      "finish": "Matte",
+      "special": ["Carbon Fiber Texture"]
+    },
+    "tags": ["black", "carbon", "tech"],
+    "description": "Sleek carbon black design with technical carbon fiber texture.",
+    "features": ["Digital wallet integration", "Instant transfers", "Security alerts"],
+    "fees": {
+      "annual": "Free",
+      "transaction": "Free",
+      "foreign": "1.5%"
+    }
+  }
+]
