@@ -6,30 +6,8 @@ import { useLanguage } from '@/lib/useLanguage';
 import { Language } from '@/lib/translations';
 
 export default function LanguageSwitcher() {
-  const { language, setLanguage, t, mounted } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return (
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.5rem',
-        padding: '0.5rem 0.75rem',
-        backgroundColor: 'white',
-        border: '1px solid #d1d5db',
-        borderRadius: '0.5rem',
-        fontSize: '0.875rem',
-        fontWeight: '500',
-        color: '#374151'
-      }}>
-        <Globe style={{ width: '1rem', height: '1rem' }} />
-        <span>English</span>
-        <ChevronDown style={{ width: '1rem', height: '1rem' }} />
-      </div>
-    );
-  }
 
   const languages: Array<{ code: Language; name: string; nativeName: string }> = [
     { code: 'en', name: t.english, nativeName: 'English' },

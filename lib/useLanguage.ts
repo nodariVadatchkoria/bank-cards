@@ -27,16 +27,18 @@ export function useLanguageProvider() {
   // Load language from localStorage on mount
   useEffect(() => {
     setMounted(true);
-    const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'ka')) {
-      setLanguageState(savedLanguage);
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('language') as Language;
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'ka')) {
+        setLanguageState(savedLanguage);
+      }
     }
   }, []);
 
   // Save language to localStorage when changed
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    if (mounted) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem('language', lang);
     }
   };

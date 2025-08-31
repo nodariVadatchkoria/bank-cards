@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { X } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import FilterPills from '@/components/FilterPills';
@@ -21,20 +21,6 @@ function CardCatalogContent() {
   const [cards] = useState<CardItem[]>(cardsData as CardItem[]);
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Don't render until mounted to prevent hydration issues
-  if (!mounted) {
-    return (
-      <div style={{ 
-        minHeight: '100vh',
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center' 
-      }}>
-        Loading...
-      </div>
-    );
-  }
   
   const filteredCards = filterCards(cards, filters);
   const activeFiltersCount = countActiveFilters(filters);
@@ -63,7 +49,7 @@ function CardCatalogContent() {
   };
 
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <div className="main-container">
       {/* Header */}
       <header style={{ 
         backgroundColor: '#fbbf24', 
@@ -327,18 +313,7 @@ function CardCatalogContent() {
 export default function Home() {
   return (
     <LanguageProvider>
-      <Suspense fallback={
-        <div style={{ 
-          minHeight: '100vh', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center' 
-        }}>
-          Loading...
-        </div>
-      }>
-        <CardCatalogContent />
-      </Suspense>
+      <CardCatalogContent />
     </LanguageProvider>
   );
 }

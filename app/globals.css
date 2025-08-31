@@ -39,6 +39,17 @@
     outline-offset: 2px;
   }
   
+  .loading-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main-container {
+    min-height: 100vh;
+  }
+  
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
