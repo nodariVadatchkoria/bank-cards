@@ -55,14 +55,14 @@ export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
       <div
         className="modal-container"
         style={{
-          backgroundColor: 'white',
-          borderRadius: '1rem',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-          width: '100%',
-          maxWidth: '42rem',
-          maxHeight: '90vh',
-          overflow: 'auto',
-          position: 'relative',
+                  backgroundColor: 'white',
+        borderRadius: '1rem',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        width: '100%',
+        maxWidth: '42rem',
+        maxHeight: '95vh',
+        overflow: 'auto',
+        position: 'relative',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -319,25 +319,25 @@ export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
                   }}
                 >
                   {card.fees.annual && (
-                    <div className="modal-info-item" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: '1rem', color: '#374151' }}>{t.annualFee}:</span>
-                      <span style={{ fontSize: '1rem', color: '#111827', fontWeight: '500' }}>
+                    <div className="modal-info-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
+                      <span style={{ fontSize: '0.875rem', color: '#374151' }}>{t.annualFee}:</span>
+                      <span style={{ fontSize: '0.875rem', color: '#111827', fontWeight: '500' }}>
                         {card.fees.annual}
                       </span>
                     </div>
                   )}
                   {card.fees.transaction && (
-                    <div className="modal-info-item" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: '1rem', color: '#374151' }}>{t.transactionFee}:</span>
-                      <span style={{ fontSize: '1rem', color: '#111827', fontWeight: '500' }}>
+                    <div className="modal-info-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
+                      <span style={{ fontSize: '0.875rem', color: '#374151' }}>{t.transactionFee}:</span>
+                      <span style={{ fontSize: '0.875rem', color: '#111827', fontWeight: '500' }}>
                         {card.fees.transaction}
                       </span>
                     </div>
                   )}
                   {card.fees.foreign && (
-                    <div className="modal-info-item" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: '1rem', color: '#374151' }}>{t.foreignFee}:</span>
-                      <span style={{ fontSize: '1rem', color: '#111827', fontWeight: '500' }}>
+                    <div className="modal-info-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
+                      <span style={{ fontSize: '0.875rem', color: '#374151' }}>{t.foreignFee}:</span>
+                      <span style={{ fontSize: '0.875rem', color: '#111827', fontWeight: '500' }}>
                         {card.fees.foreign}
                       </span>
                     </div>

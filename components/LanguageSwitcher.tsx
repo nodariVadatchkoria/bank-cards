@@ -23,12 +23,12 @@ export default function LanguageSwitcher() {
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '0.5rem',
-          padding: '0.5rem 0.75rem',
+          gap: '0.25rem',
+          padding: '0.375rem 0.5rem',
           backgroundColor: 'white',
           border: '1px solid #d1d5db',
-          borderRadius: '0.5rem',
-          fontSize: '0.875rem',
+          borderRadius: '0.375rem',
+          fontSize: '0.75rem',
           fontWeight: '500',
           color: '#374151',
           cursor: 'pointer',
@@ -52,12 +52,12 @@ export default function LanguageSwitcher() {
         }}
         aria-label={t.language}
       >
-        <Globe style={{ width: '1rem', height: '1rem' }} />
+        <Globe style={{ width: '0.875rem', height: '0.875rem' }} />
         <span>{currentLanguage?.nativeName}</span>
         <ChevronDown 
           style={{ 
-            width: '1rem', 
-            height: '1rem',
+            width: '0.875rem', 
+            height: '0.875rem',
             transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
             transition: 'transform 0.2s ease-in-out'
           }} 

@@ -112,11 +112,11 @@ function CardCatalogContent() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ 
               display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-              gap: '1rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', 
+              gap: '0.75rem',
               maxWidth: '48rem',
               margin: '0 auto',
-              padding: '0 0.5rem'
+              padding: '0 1rem'
             }}>
               <FilterPills
                 title={t.type}
