@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { X } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import FilterPills from '@/components/FilterPills';
@@ -313,7 +313,13 @@ function CardCatalogContent() {
 export default function Home() {
   return (
     <LanguageProvider>
-      <CardCatalogContent />
+      <Suspense fallback={
+        <div className="loading-container">
+          Loading...
+        </div>
+      }>
+        <CardCatalogContent />
+      </Suspense>
     </LanguageProvider>
   );
 }
