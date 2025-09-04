@@ -1,223 +1,201 @@
-# Card Catalog - Bank Card Collection
+# Bank Cards Catalog
 
-A modern, responsive web application for browsing and exploring bank card designs. Built with Next.js 14, TypeScript, and TailwindCSS.
+A modern, responsive web application for managing a catalog of bank card designs. Built with Next.js, TypeScript, and featuring full CRUD operations with persistent data storage.
 
-## 🌟 Features
+## ✨ Features
 
-- **Responsive Design**: Mobile-first design that works beautifully on all devices
-- **Advanced Search**: Search cards by name, features, description, and tags
-- **Smart Filtering**: Filter by card type (Debit/Credit) and network (Visa/MasterCard)
-- **URL State Management**: All filters and search state persist in the URL for easy sharing
-- **Accessible**: Built with accessibility in mind, following WCAG guidelines
-- **SEO Optimized**: Proper meta tags and Open Graph support
-- **Fast Performance**: Optimized images with Next.js Image component
-- **Type Safe**: Full TypeScript coverage for better developer experience
+### 🎨 Card Management
+- **View Cards**: Browse through a beautiful grid of bank card designs
+- **Add Cards**: Create new card entries with detailed information
+- **Edit Cards**: Modify existing card details with a comprehensive form
+- **Delete Cards**: Remove cards with confirmation dialog
+- **Search & Filter**: Find cards by name, type, or network
 
-## 🚀 Quick Start
+### 📱 User Experience
+- **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- **Modern UI**: Clean, professional interface with smooth animations
+- **Image Upload**: Upload and preview card images
+- **Real-time Updates**: Changes reflect immediately in the interface
+- **Persistent Storage**: All data is saved to JSON file and survives browser restarts
+
+### 🔧 Technical Features
+- **Full CRUD API**: RESTful endpoints for all card operations
+- **TypeScript**: Fully typed codebase for better development experience
+- **Next.js 15**: Latest Next.js with App Router and Turbopack
+- **File-based Storage**: JSON file persistence for easy data management
+- **Error Handling**: Graceful fallbacks and user-friendly error messages
+
+## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js 18+ and npm
-- Modern web browser
+- Node.js 18+ 
+- npm or yarn
 
 ### Installation
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd bank-cards
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/bank-cards.git
+   cd bank-cards
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
 ## 📁 Project Structure
 
 ```
 bank-cards/
-├── app/                    # Next.js App Router
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout with SEO
-│   └── page.tsx          # Main catalog page
-├── components/            # Reusable UI components
-│   ├── CardTile.tsx      # Individual card display
-│   ├── FilterPills.tsx   # Filter toggle buttons
-│   └── SearchBar.tsx     # Search input component
-├── data/                 # Static data files
-│   └── cards.json       # Card catalog data
-├── lib/                 # Utilities and business logic
-│   ├── filtering.ts     # Filter and search logic
-│   ├── types.ts         # TypeScript type definitions
-│   └── useQueryState.ts # URL state management hook
-├── public/              # Static assets
-│   └── cards/          # Card design images (SVG)
-├── scripts/            # Build and utility scripts
-│   └── generate-cards.js # Card image generator
-└── test/               # Test files
-    └── filtering.test.ts # Unit tests for filtering logic
+├── app/
+│   ├── api/cards/          # API routes for CRUD operations
+│   ├── globals.css         # Global styles
+│   ├── layout.tsx          # Root layout component
+│   └── page.tsx            # Main page component
+├── components/
+│   ├── CardModal.tsx       # Card detail view modal
+│   ├── CardTile.tsx        # Individual card display component
+│   ├── DeleteConfirmationModal.tsx  # Delete confirmation dialog
+│   ├── EditCardModal.tsx   # Add/Edit card form modal
+│   ├── FilterPills.tsx     # Filter component
+│   ├── LanguageProvider.tsx # Internationalization provider
+│   ├── LanguageSwitcher.tsx # Language toggle component
+│   ├── ScrollToTop.tsx     # Scroll to top button
+│   └── SearchBar.tsx       # Search input component
+├── data/
+│   └── cards.json          # Card data storage (auto-generated)
+├── lib/
+│   ├── filtering.ts        # Filter logic and utilities
+│   ├── translations.ts     # Internationalization strings
+│   ├── types.ts           # TypeScript type definitions
+│   ├── useLanguage.ts     # Language hook
+│   └── useQueryState.ts   # URL state management hook
+├── public/
+│   └── cards/             # Card image assets
+└── scripts/
+    └── generate-cards.js  # Card data generation script
 ```
 
-## 🎨 Card Data Format
+## 🎯 Usage
 
-Each card in the catalog follows this structure:
+### Adding a New Card
+1. Click the **"+Add New Card"** button
+2. Fill in the card details:
+   - Basic information (name, network, type)
+   - Card image upload
+   - Print configuration
+   - Features and fees
+   - Tags for searchability
+3. Click **"Add Card"** to save
 
-```typescript
-{
-  "id": "unique-card-id",
-  "name": "Card Display Name",
-  "issuerNetwork": "Visa" | "MasterCard",
-  "cardType": "Debit" | "Credit",
-  "image": "/cards/card-image.svg",
-  "printConfig": {
-    "name": "Print specification name",
-    "dpi": 300,
-    "colorProfile": "CMYK" | "RGB",
-    "bleedMm": 3,
-    "finish": "Matte" | "Glossy" | "Satin",
-    "special": ["Embossing", "Foil Silver"]
-  },
-  "tags": ["searchable", "keywords"],
-  "description": "Marketing description",
-  "features": ["Key feature 1", "Key feature 2"],
-  "fees": {
-    "annual": "Fee information",
-    "transaction": "Transaction fees",
-    "foreign": "Foreign transaction fees"
-  }
-}
-```
+### Editing a Card
+1. Click on any card to view details
+2. Click the blue **edit icon** in the top-right
+3. Modify any fields in the form
+4. Click **"Save Changes"** to update
 
-## 🧪 Testing
+### Deleting a Card
+1. Click on any card to view details
+2. Click the red **delete icon** in the top-right
+3. Confirm deletion in the warning dialog
 
-Run the test suite:
+### Searching and Filtering
+- Use the search bar to find cards by name
+- Use filter pills to filter by card type (Debit/Credit) or network (Visa/MasterCard)
+- Clear all filters with the "Clear All" button
 
-```bash
-# Run tests once
-npm run test:run
+## 🔌 API Endpoints
 
-# Run tests in watch mode
-npm run test
+The application includes a RESTful API for card management:
 
-# Run tests with UI
-npm run test:ui
-```
+- `GET /api/cards` - Fetch all cards
+- `POST /api/cards` - Create a new card
+- `PUT /api/cards` - Update an existing card
+- `DELETE /api/cards?id={cardId}` - Delete a card
 
-The project includes comprehensive unit tests for the filtering logic, covering:
-- Search functionality
-- Filter combinations
-- URL state management
-- Edge cases and error handling
+## 💾 Data Storage
 
-## 🎯 Key Technical Features
+Card data is stored in `/data/cards.json` and includes:
+- Card identification and basic info
+- Print configuration details
+- Features and fee information
+- Tags for searchability
+- Image references
 
-### Search & Filtering
-- **Real-time search**: Instant filtering as you type
-- **Multi-field search**: Searches across name, tags, description, and print config
-- **Combinable filters**: AND logic across filter groups
-- **URL persistence**: All state synced with browser URL for sharing and bookmarking
+## 🌐 Internationalization
 
-### Performance
-- **Next.js Image optimization**: Automatic image optimization and lazy loading
-- **SVG graphics**: Scalable vector graphics for crisp display at any size
-- **Client-side filtering**: Fast, responsive filtering without server requests
-
-### Accessibility
-- **Keyboard navigation**: Full keyboard support for all interactions
-- **Screen reader friendly**: Proper ARIA labels and semantic HTML
-- **Focus management**: Clear focus indicators and logical tab order
-- **High contrast**: Color combinations that meet WCAG guidelines
-
-## 🔧 Development Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run test         # Run tests in watch mode
-npm run test:run     # Run tests once
-npm run test:ui      # Run tests with UI dashboard
-```
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Vercel will automatically build and deploy your app
-
-### Manual Deployment
-
-```bash
-npm run build
-npm run start
-```
+The application supports multiple languages with:
+- English (default)
+- Easy extension for additional languages
+- Language switcher in the header
 
 ## 🎨 Customization
 
-### Adding New Cards
-
-1. Add card data to `data/cards.json`
-2. Add corresponding card image to `public/cards/`
-3. Or run the image generator: `node scripts/generate-cards.js`
+### Adding New Card Types
+1. Update the `CardItem` type in `lib/types.ts`
+2. Modify the form in `EditCardModal.tsx`
+3. Update filtering logic in `lib/filtering.ts`
 
 ### Styling
+- Global styles in `app/globals.css`
+- Component-specific styles using inline styles
+- Responsive design with CSS Grid and Flexbox
 
-The project uses TailwindCSS for styling. Key customization points:
+## 🚀 Deployment
 
-- `app/globals.css`: Global styles and utilities
-- `tailwind.config.js`: Theme configuration (if needed)
-- Component files: Individual component styling
+### Vercel (Recommended)
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy with zero configuration
 
-### Adding New Filters
-
-1. Update the `FilterState` type in `lib/types.ts`
-2. Add filter logic in `lib/filtering.ts`
-3. Add UI components for new filters
-4. Update URL state management in `useQueryState.ts`
-
-## 📋 Future Enhancements
-
-- [ ] Card detail pages with full specifications
-- [ ] Card comparison tool
-- [ ] User favorites and wishlist
-- [ ] Advanced filtering (price ranges, benefits)
-- [ ] Print specification export (PDF/JSON)
-- [ ] Admin panel for card management
-- [ ] User reviews and ratings
-- [ ] Integration with banking APIs
-- [ ] Personalized recommendations
+### Other Platforms
+The application can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔍 SEO Features
+## 🙏 Acknowledgments
 
-- Comprehensive meta tags for social sharing
-- Open Graph and Twitter Card support
-- Semantic HTML structure
-- Fast loading times for better search rankings
-- Mobile-responsive design
+- Built with [Next.js](https://nextjs.org/)
+- Icons by [Lucide](https://lucide.dev/)
+- Design inspired by modern banking applications
+
+## 📞 Support
+
+If you have any questions or need help, please:
+- Open an issue on GitHub
+- Check the documentation
+- Review the code comments
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and TailwindCSS
+**Happy card cataloging! 🎴**

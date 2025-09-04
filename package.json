@@ -1,15 +1,40 @@
 {
-  "name": "bank-cards",
-  "version": "0.1.0",
+  "name": "bank-cards-catalog",
+  "version": "1.0.0",
+  "description": "A modern web application for managing bank card designs with full CRUD operations",
   "private": true,
+  "keywords": [
+    "bank-cards",
+    "catalog",
+    "nextjs",
+    "typescript",
+    "react",
+    "crud",
+    "banking"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/bank-cards#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/bank-cards.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/bank-cards/issues"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "clean": "rm -rf .next out dist",
+    "preview": "npm run build && npm run start"
   },
   "dependencies": {
     "lucide-react": "^0.542.0",

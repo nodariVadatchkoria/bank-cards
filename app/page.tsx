@@ -1,11 +1,13 @@
 'use client';
 
-import { Suspense, useState } from 'react';
-import { X } from 'lucide-react';
+import { Suspense, useState, useEffect } from 'react';
+import { X, Plus } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import FilterPills from '@/components/FilterPills';
 import CardTile from '@/components/CardTile';
 import CardModal from '@/components/CardModal';
+import EditCardModal from '@/components/EditCardModal';
+import DeleteConfirmationModal from '@/components/DeleteConfirmationModal';
 import ScrollToTop from '@/components/ScrollToTop';
 import LanguageProvider from '@/components/LanguageProvider';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -18,12 +20,41 @@ import cardsData from '@/data/cards.json';
 function CardCatalogContent() {
   const { filters, updateFilters, setFilters } = useQueryState();
   const { t, mounted } = useLanguage();
-  const [cards] = useState<CardItem[]>(cardsData as CardItem[]);
+  const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState<CardItem | null>(null);
+  const [cardToEdit, setCardToEdit] = useState<CardItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load cards from API on component mount
+  useEffect(() => {
+    const loadCards = async () => {
+      try {
+        const response = await fetch('/api/cards');
+        if (response.ok) {
+          const cardsData = await response.json();
+          setCards(cardsData);
+        } else {
+          // Fallback to static data if API fails
+          setCards(cardsData as CardItem[]);
+        }
+      } catch (error) {
+        console.error('Error loading cards:', error);
+        // Fallback to static data
+        setCards(cardsData as CardItem[]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadCards();
+  }, []);
 
   // Don't render until mounted to prevent hydration issues
-  if (!mounted) {
+  if (!mounted || isLoading) {
     return (
       <div style={{ 
         minHeight: '100vh',
@@ -60,6 +91,88 @@ function CardCatalogContent() {
   const closeCardModal = () => {
     setIsModalOpen(false);
     setSelectedCard(null);
+  };
+
+  const openAddCardModal = () => {
+    setCardToEdit(null);
+    setIsEditModalOpen(true);
+  };
+
+  const openEditCardModal = (card: CardItem) => {
+    setCardToEdit(card);
+    setIsEditModalOpen(true);
+    setIsModalOpen(false); // Close the card modal
+  };
+
+  const closeEditCardModal = () => {
+    setIsEditModalOpen(false);
+    setCardToEdit(null);
+  };
+
+  const handleSaveCard = async (cardData: CardItem) => {
+    try {
+      const isEditing = !!cardToEdit;
+      const url = '/api/cards';
+      const method = isEditing ? 'PUT' : 'POST';
+      
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cardData),
+      });
+
+      if (response.ok) {
+        const savedCard = await response.json();
+        
+        if (isEditing) {
+          // Update existing card in state
+          setCards(prevCards => 
+            prevCards.map(card => card.id === savedCard.id ? savedCard : card)
+          );
+        } else {
+          // Add new card to state
+          setCards(prevCards => [...prevCards, savedCard]);
+        }
+      } else {
+        console.error('Failed to save card');
+      }
+    } catch (error) {
+      console.error('Error saving card:', error);
+    }
+  };
+
+  const handleDeleteCard = (card: CardItem) => {
+    setCardToDelete(card);
+    setIsDeleteModalOpen(true);
+    setIsModalOpen(false); // Close the card modal
+  };
+
+  const confirmDeleteCard = async () => {
+    if (cardToDelete) {
+      try {
+        const response = await fetch(`/api/cards?id=${cardToDelete.id}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          setCards(prevCards => prevCards.filter(card => card.id !== cardToDelete.id));
+        } else {
+          console.error('Failed to delete card');
+        }
+      } catch (error) {
+        console.error('Error deleting card:', error);
+      } finally {
+        setCardToDelete(null);
+        setIsDeleteModalOpen(false);
+      }
+    }
+  };
+
+  const cancelDeleteCard = () => {
+    setCardToDelete(null);
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -180,27 +293,57 @@ function CardCatalogContent() {
             }
           </div>
           
-          {hasFilters && (
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
             <button
-              onClick={clearAllFilters}
+              onClick={openAddCardModal}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                padding: '0.5rem 0.75rem',
+                padding: '0.75rem 1rem',
                 fontSize: '0.875rem',
                 fontWeight: '500',
-                color: '#374151',
-                backgroundColor: 'white',
-                border: '1px solid #d1d5db',
+                color: 'white',
+                backgroundColor: '#2563eb',
+                border: 'none',
                 borderRadius: '0.5rem',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 2px 4px rgba(37, 99, 235, 0.2)',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#2563eb';
               }}
             >
-              <X style={{ width: '1rem', height: '1rem' }} />
-              {t.clearAllFilters}
+              <Plus style={{ width: '1rem', height: '1rem' }} />
+              Add New Card
             </button>
-          )}
+            
+            {hasFilters && (
+              <button
+                onClick={clearAllFilters}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.5rem 0.75rem',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  color: '#374151',
+                  backgroundColor: 'white',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <X style={{ width: '1rem', height: '1rem' }} />
+                {t.clearAllFilters}
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Cards Grid */}
@@ -318,6 +461,26 @@ function CardCatalogContent() {
           card={selectedCard}
           isOpen={isModalOpen}
           onClose={closeCardModal}
+          onDelete={handleDeleteCard}
+          onEdit={openEditCardModal}
+        />
+      )}
+
+      {/* Edit/Add Card Modal */}
+      <EditCardModal
+        isOpen={isEditModalOpen}
+        onClose={closeEditCardModal}
+        onSave={handleSaveCard}
+        card={cardToEdit}
+      />
+
+      {/* Delete Confirmation Modal */}
+      {cardToDelete && (
+        <DeleteConfirmationModal
+          card={cardToDelete}
+          isOpen={isDeleteModalOpen}
+          onClose={cancelDeleteCard}
+          onConfirm={confirmDeleteCard}
         />
       )}
     </div>

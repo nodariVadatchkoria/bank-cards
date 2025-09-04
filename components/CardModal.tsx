@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { X, Trash2, Edit } from 'lucide-react';
 import { CardItem } from '@/lib/types';
 import { useLanguage } from '@/lib/useLanguage';
 
@@ -10,9 +10,11 @@ interface CardModalProps {
   card: CardItem;
   isOpen: boolean;
   onClose: () => void;
+  onDelete?: (card: CardItem) => void;
+  onEdit?: (card: CardItem) => void;
 }
 
-export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
+export default function CardModal({ card, isOpen, onClose, onDelete, onEdit }: CardModalProps) {
   const { t } = useLanguage();
   
   // Handle escape key press
@@ -68,34 +70,97 @@ export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '1rem',
-            right: '1rem',
-            backgroundColor: '#f3f4f6',
-            border: 'none',
-            borderRadius: '50%',
-            width: '2.5rem',
-            height: '2.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            zIndex: 10
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#e5e7eb';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#f3f4f6';
-          }}
-          aria-label={t.close}
-        >
-          <X style={{ width: '1.25rem', height: '1.25rem', color: '#374151' }} />
-        </button>
+        {/* Action buttons */}
+        <div style={{
+          position: 'absolute',
+          top: '1rem',
+          right: '1rem',
+          display: 'flex',
+          gap: '0.5rem',
+          zIndex: 10
+        }}>
+          {onEdit && (
+            <button
+              onClick={() => onEdit(card)}
+              style={{
+                backgroundColor: '#eff6ff',
+                border: '1px solid #bfdbfe',
+                borderRadius: '50%',
+                width: '2.5rem',
+                height: '2.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#dbeafe';
+                e.currentTarget.style.borderColor = '#93c5fd';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#eff6ff';
+                e.currentTarget.style.borderColor = '#bfdbfe';
+              }}
+              aria-label="Edit card"
+              title="Edit card"
+            >
+              <Edit style={{ width: '1.25rem', height: '1.25rem', color: '#2563eb' }} />
+            </button>
+          )}
+          {onDelete && (
+            <button
+              onClick={() => onDelete(card)}
+              style={{
+                backgroundColor: '#fef2f2',
+                border: '1px solid #fecaca',
+                borderRadius: '50%',
+                width: '2.5rem',
+                height: '2.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#fee2e2';
+                e.currentTarget.style.borderColor = '#fca5a5';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#fef2f2';
+                e.currentTarget.style.borderColor = '#fecaca';
+              }}
+              aria-label="Delete card"
+              title="Delete card"
+            >
+              <Trash2 style={{ width: '1.25rem', height: '1.25rem', color: '#dc2626' }} />
+            </button>
+          )}
+          <button
+            onClick={onClose}
+            style={{
+              backgroundColor: '#f3f4f6',
+              border: 'none',
+              borderRadius: '50%',
+              width: '2.5rem',
+              height: '2.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#e5e7eb';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#f3f4f6';
+            }}
+            aria-label={t.close}
+          >
+            <X style={{ width: '1.25rem', height: '1.25rem', color: '#374151' }} />
+          </button>
+        </div>
 
         {/* Card Image */}
         <div className="card-image" style={{ 
