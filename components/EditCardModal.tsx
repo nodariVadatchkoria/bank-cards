@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { X, Upload, Plus, Save } from 'lucide-react';
+import { X, Upload, Plus, Save, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { CardItem } from '@/lib/types';
 
@@ -200,6 +200,15 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
   return (
     <>
       <style jsx>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        
         @media (max-width: 768px) {
           .modal-container {
             margin: 0.5rem !important;
@@ -758,11 +767,21 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   cursor: isSubmitting || !formData.name ? 'not-allowed' : 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem'
+                  gap: '0.5rem',
+                  transition: 'background-color 0.2s'
                 }}
               >
-                {isSubmitting ? 'Saving...' : (isEditing ? 'Save Changes' : 'Add Card')}
-                {!isSubmitting && (isEditing ? <Save style={{ width: '1rem', height: '1rem' }} /> : <Plus style={{ width: '1rem', height: '1rem' }} />)}
+                {isSubmitting ? (
+                  <>
+                    <Loader2 style={{ width: '1rem', height: '1rem', animation: 'spin 1s linear infinite' }} />
+                    {isEditing ? 'Saving...' : 'Adding...'}
+                  </>
+                ) : (
+                  <>
+                    {isEditing ? 'Save Changes' : 'Add Card'}
+                    {isEditing ? <Save style={{ width: '1rem', height: '1rem' }} /> : <Plus style={{ width: '1rem', height: '1rem' }} />}
+                  </>
+                )}
               </button>
             </div>
           </form>

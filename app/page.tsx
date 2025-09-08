@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense, useState, useEffect } from 'react';
-import { X, Plus } from 'lucide-react';
+import { X, Plus, Loader2 } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import FilterPills from '@/components/FilterPills';
 import CardTile from '@/components/CardTile';
@@ -28,6 +28,7 @@ function CardCatalogContent() {
   const [cardToDelete, setCardToDelete] = useState<CardItem | null>(null);
   const [cardToEdit, setCardToEdit] = useState<CardItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSavingCard, setIsSavingCard] = useState(false);
 
   // Load cards from API on component mount
   useEffect(() => {
@@ -110,6 +111,7 @@ function CardCatalogContent() {
   };
 
   const handleSaveCard = async (cardData: CardItem) => {
+    setIsSavingCard(true);
     try {
       const isEditing = !!cardToEdit;
       const url = '/api/cards';
@@ -140,6 +142,8 @@ function CardCatalogContent() {
       }
     } catch (error) {
       console.error('Error saving card:', error);
+    } finally {
+      setIsSavingCard(false);
     }
   };
 
@@ -176,7 +180,18 @@ function CardCatalogContent() {
   };
 
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <>
+      <style jsx>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
+      <div style={{ minHeight: '100vh' }}>
       {/* Header */}
       <header style={{ 
         backgroundColor: '#fbbf24', 
@@ -296,6 +311,7 @@ function CardCatalogContent() {
           <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
             <button
               onClick={openAddCardModal}
+              disabled={isSavingCard}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -304,22 +320,35 @@ function CardCatalogContent() {
                 fontSize: '0.875rem',
                 fontWeight: '500',
                 color: 'white',
-                backgroundColor: '#2563eb',
+                backgroundColor: isSavingCard ? '#9ca3af' : '#2563eb',
                 border: 'none',
                 borderRadius: '0.5rem',
-                cursor: 'pointer',
+                cursor: isSavingCard ? 'not-allowed' : 'pointer',
                 boxShadow: '0 2px 4px rgba(37, 99, 235, 0.2)',
                 transition: 'background-color 0.2s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#1d4ed8';
+                if (!isSavingCard) {
+                  e.currentTarget.style.backgroundColor = '#1d4ed8';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#2563eb';
+                if (!isSavingCard) {
+                  e.currentTarget.style.backgroundColor = '#2563eb';
+                }
               }}
             >
-              <Plus style={{ width: '1rem', height: '1rem' }} />
-              Add New Card
+              {isSavingCard ? (
+                <>
+                  <Loader2 style={{ width: '1rem', height: '1rem', animation: 'spin 1s linear infinite' }} />
+                  Adding...
+                </>
+              ) : (
+                <>
+                  <Plus style={{ width: '1rem', height: '1rem' }} />
+                  Add New Card
+                </>
+              )}
             </button>
             
             {hasFilters && (
@@ -483,7 +512,8 @@ function CardCatalogContent() {
           onConfirm={confirmDeleteCard}
         />
       )}
-    </div>
+      </div>
+    </>
   );
 }
 
