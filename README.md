@@ -179,7 +179,37 @@ The application can be deployed to any platform that supports Next.js:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## 🔀 Merge Procedure (Merge work into main)
 
+Use either the IDE (recommended) or CLI steps below.
+
+- Prerequisites:
+  - Ensure your working tree is clean (commit or stash changes).
+  - Ensure you have permission to push to main or open a PR/MR if main is protected.
+
+- JetBrains IDE (UI):
+  1. Checkout main: Git → Branches → select main → Checkout.
+  2. Update main: Git → Pull.
+  3. Merge work into main: Git → Branches → select work → Merge into Current.
+  4. If conflicts appear, resolve them in the merge tool, then Apply.
+  5. Push: Git → Push (to update origin/main).
+
+- Command line (CLI):
+  ```bash
+  git checkout main
+  git pull origin main
+  git merge work          # resolve conflicts if prompted
+  # If conflicts occurred:
+  #   (edit files to resolve) 
+  #   git add -A
+  #   git commit
+  git push origin main
+  ```
+
+- Notes:
+  - To force a merge commit: use the IDE “no-ff” option or run `git merge --no-ff work`.
+  - To squash on merge (single commit): use IDE “squash” option or `git merge --squash work && git commit`.
+  - If main is protected, create a PR/MR from work → main instead of pushing directly.
 
 ## 🙏 Acknowledgments
 
