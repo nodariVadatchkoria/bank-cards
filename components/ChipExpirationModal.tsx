@@ -2,6 +2,7 @@
 
 import { X, AlertTriangle, CheckCircle } from 'lucide-react';
 import { CardItem } from '@/lib/types';
+import { useLanguage } from '@/lib/useLanguage';
 
 interface ChipExpirationModalProps {
   isOpen: boolean;
@@ -10,6 +11,8 @@ interface ChipExpirationModalProps {
 }
 
 export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: ChipExpirationModalProps) {
+  const { t } = useLanguage();
+  
   // Handle escape key press
   const handleEscape = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -114,19 +117,19 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
               color: '#111827',
               margin: 0
             }}>
-              Chip Expiration Check
+              {t.chipExpirationCheck}
             </h2>
           </div>
-          <p style={{
-            fontSize: '0.875rem',
-            color: '#6b7280',
-            margin: 0
-          }}>
-            {hasExpiringCards 
-              ? `Found ${expiringCards.length} card${expiringCards.length === 1 ? '' : 's'} with chips expiring within 2 years`
-              : 'All card chips are valid for more than 2 years'
-            }
-          </p>
+            <p style={{
+              fontSize: '0.875rem',
+              color: '#6b7280',
+              margin: 0
+            }}>
+              {hasExpiringCards 
+                ? t.foundExpiringCards.replace('{count}', expiringCards.length.toString()).replace('{plural}', expiringCards.length === 1 ? '' : 's')
+                : t.allChipsValid
+              }
+            </p>
         </div>
 
         {/* Content */}
@@ -152,7 +155,7 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
                     fontWeight: '600',
                     color: '#92400e'
                   }}>
-                    Action Required
+                    {t.actionRequired}
                   </span>
                 </div>
                 <p style={{
@@ -161,8 +164,7 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
                   margin: 0,
                   lineHeight: '1.5'
                 }}>
-                  The following cards have chips that will expire within the next 2 years. 
-                  Consider contacting the card manufacturer for replacement or renewal.
+                  {t.actionRequiredDescription}
                 </p>
               </div>
 
@@ -211,7 +213,7 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
                           fontWeight: '600',
                           color: '#92400e'
                         }}>
-                          Expires: {card.chipValidityPeriod}
+                          {t.expires} {card.chipValidityPeriod}
                         </span>
                       </div>
                     </div>
@@ -253,7 +255,7 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
                 color: '#111827',
                 margin: '0 0 0.5rem 0'
               }}>
-                All Chips Valid
+                {t.allChipsValidTitle}
               </h3>
               <p style={{
                 fontSize: '0.875rem',
@@ -261,8 +263,7 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
                 margin: 0,
                 lineHeight: '1.5'
               }}>
-                Great news! All card chips in your catalog are valid for more than 2 years. 
-                No immediate action is required.
+                {t.allChipsValidDescription}
               </p>
             </div>
           )}
@@ -295,7 +296,7 @@ export default function ChipExpirationModal({ isOpen, onClose, expiringCards }: 
               e.currentTarget.style.backgroundColor = '#2563eb';
             }}
           >
-            Close
+            {t.close}
           </button>
         </div>
       </div>

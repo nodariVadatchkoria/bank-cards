@@ -57,6 +57,43 @@ export interface Translations {
   language: string;
   english: string;
   georgian: string;
+  
+  // New buttons and features
+  addNewCard: string;
+  checkChipExpiration: string;
+  adding: string;
+  saving: string;
+  saveChanges: string;
+  cancel: string;
+  
+  // Edit/Add Card Modal
+  editCard: string;
+  addNewCardTitle: string;
+  basicInformation: string;
+  cardName: string;
+  cardImage: string;
+  uploadCardImage: string;
+  clickToUpload: string;
+  dragAndDrop: string;
+  fileTypes: string;
+  preview: string;
+  printConfiguration: string;
+  specialEffects: string;
+  featuresAndFees: string;
+  keyFeaturesComma: string;
+  chipValidityPeriod: string;
+  tagsComma: string;
+  
+  // Chip Expiration Modal
+  chipExpirationCheck: string;
+  foundExpiringCards: string;
+  allChipsValid: string;
+  actionRequired: string;
+  actionRequiredDescription: string;
+  allChipsValidTitle: string;
+  allChipsValidDescription: string;
+  expires: string;
+  close: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -116,7 +153,44 @@ export const translations: Record<Language, Translations> = {
     // Language
     language: "Language",
     english: "English",
-    georgian: "Georgian"
+    georgian: "Georgian",
+    
+    // New buttons and features
+    addNewCard: "Add New Card",
+    checkChipExpiration: "Check Chip Expiration",
+    adding: "Adding...",
+    saving: "Saving...",
+    saveChanges: "Save Changes",
+    cancel: "Cancel",
+    
+    // Edit/Add Card Modal
+    editCard: "Edit Card",
+    addNewCardTitle: "Add New Card",
+    basicInformation: "Basic Information",
+    cardName: "Card Name",
+    cardImage: "Card Image",
+    uploadCardImage: "Upload Card Image",
+    clickToUpload: "Click to upload or drag and drop",
+    dragAndDrop: "Click to upload or drag and drop",
+    fileTypes: "PNG, JPG, SVG up to 10MB",
+    preview: "Preview",
+    printConfiguration: "Print Configuration",
+    specialEffects: "Special Effects (comma-separated)",
+    featuresAndFees: "Features and Fees",
+    keyFeaturesComma: "Key Features (comma-separated)",
+    chipValidityPeriod: "Chip Validity Period",
+    tagsComma: "Tags (comma-separated)",
+    
+    // Chip Expiration Modal
+    chipExpirationCheck: "Chip Expiration Check",
+    foundExpiringCards: "Found {count} card{plural} with chips expiring within 2 years",
+    allChipsValid: "All card chips are valid for more than 2 years",
+    actionRequired: "Action Required",
+    actionRequiredDescription: "The following cards have chips that will expire within the next 2 years. Consider contacting the card manufacturer for replacement or renewal.",
+    allChipsValidTitle: "All Chips Valid",
+    allChipsValidDescription: "Great news! All card chips in your catalog are valid for more than 2 years. No immediate action is required.",
+    expires: "Expires:",
+    close: "Close"
   },
   ka: {
     // Header
@@ -174,6 +248,43 @@ export const translations: Record<Language, Translations> = {
     // Language
     language: "ენა",
     english: "ინგლისური",
-    georgian: "ქართული"
+    georgian: "ქართული",
+    
+    // New buttons and features
+    addNewCard: "ახალი ბარათის დამატება",
+    checkChipExpiration: "ჩიპის ვადის შემოწმება",
+    adding: "დამატება...",
+    saving: "შენახვა...",
+    saveChanges: "ცვლილებების შენახვა",
+    cancel: "გაუქმება",
+    
+    // Edit/Add Card Modal
+    editCard: "ბარათის რედაქტირება",
+    addNewCardTitle: "ახალი ბარათის დამატება",
+    basicInformation: "ძირითადი ინფორმაცია",
+    cardName: "ბარათის სახელი",
+    cardImage: "ბარათის სურათი",
+    uploadCardImage: "ბარათის სურათის ატვირთვა",
+    clickToUpload: "ატვირთვისთვის დააწკაპუნეთ ან გადაიტანეთ",
+    dragAndDrop: "ატვირთვისთვის დააწკაპუნეთ ან გადაიტანეთ",
+    fileTypes: "PNG, JPG, SVG 10MB-მდე",
+    preview: "წინასწარი ნახვა",
+    printConfiguration: "ბეჭდვის კონფიგურაცია",
+    specialEffects: "სპეციალური ეფექტები (მძიმით გამოყოფილი)",
+    featuresAndFees: "ფუნქციები და საკომისიოები",
+    keyFeaturesComma: "ძირითადი ფუნქციები (მძიმით გამოყოფილი)",
+    chipValidityPeriod: "ჩიპის მოქმედების პერიოდი",
+    tagsComma: "ტეგები (მძიმით გამოყოფილი)",
+    
+    // Chip Expiration Modal
+    chipExpirationCheck: "ჩიპის ვადის შემოწმება",
+    foundExpiringCards: "ნაპოვნია {count} ბარათი{plural} ჩიპებით, რომლებიც 2 წელში ვადას გაუვლის",
+    allChipsValid: "ყველა ბარათის ჩიპი 2 წელზე მეტი ვადით მოქმედებს",
+    actionRequired: "მოქმედება საჭიროა",
+    actionRequiredDescription: "შემდეგ ბარათებს აქვთ ჩიპები, რომლებიც მომდევნო 2 წელში ვადას გაუვლის. განიხილეთ ბარათის მწარმოებელთან დაკავშირება ჩანაცვლების ან განახლებისთვის.",
+    allChipsValidTitle: "ყველა ჩიპი მოქმედებს",
+    allChipsValidDescription: "შესანიშნავი ამბავია! თქვენი კატალოგის ყველა ბარათის ჩიპი 2 წელზე მეტი ვადით მოქმედებს. დაუყოვნებელი მოქმედება არ არის საჭირო.",
+    expires: "ვადა:",
+    close: "დახურვა"
   }
 };

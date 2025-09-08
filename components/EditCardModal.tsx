@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { X, Upload, Plus, Save, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { CardItem } from '@/lib/types';
+import { useLanguage } from '@/lib/useLanguage';
 
 interface EditCardModalProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ interface FormData {
 }
 
 export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCardModalProps) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     issuerNetwork: 'Visa',
@@ -301,7 +303,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
               gap: '0.5rem'
             }}>
               {isEditing ? <Save style={{ width: '1.5rem', height: '1.5rem' }} /> : <Plus style={{ width: '1.5rem', height: '1.5rem' }} />}
-              {isEditing ? 'Edit Card' : 'Add New Card'}
+              {isEditing ? t.editCard : t.addNewCardTitle}
             </h2>
           </div>
 
@@ -316,13 +318,13 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   color: '#111827',
                   marginBottom: '1rem'
                 }}>
-                  Basic Information
+                  {t.basicInformation}
                 </h3>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                      Card Name *
+                      {t.cardName} *
                     </label>
                     <input
                       type="text"
@@ -416,13 +418,13 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   color: '#111827',
                   marginBottom: '1rem'
                 }}>
-                  Card Image
+                  {t.cardImage}
                 </h3>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                      Upload Card Image
+                      {t.uploadCardImage}
                     </label>
                     <div style={{
                       border: '2px dashed #d1d5db',
@@ -450,10 +452,10 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                       <label htmlFor="image-upload" style={{ cursor: 'pointer', display: 'block' }}>
                         <Upload style={{ width: '1.5rem', height: '1.5rem', color: '#6b7280', margin: '0 auto 0.5rem' }} />
                         <div style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-                          Click to upload or drag and drop
+                          {t.clickToUpload}
                         </div>
                         <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: '0.25rem' }}>
-                          PNG, JPG, SVG up to 10MB
+                          {t.fileTypes}
                         </div>
                       </label>
                     </div>
@@ -462,7 +464,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   {imagePreview && (
                     <div>
                       <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                        Preview
+                        {t.preview}
                       </label>
                       <div style={{
                         border: '1px solid #d1d5db',
@@ -496,7 +498,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   color: '#111827',
                   marginBottom: '1rem'
                 }}>
-                  Print Configuration
+                  {t.printConfiguration}
                 </h3>
                 
                 <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '0.75rem' }}>
@@ -584,7 +586,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
 
                 <div style={{ marginTop: '1rem' }}>
                   <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                    Special Effects (comma-separated)
+                    {t.specialEffects}
                   </label>
                   <input
                     type="text"
@@ -611,13 +613,13 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   color: '#111827',
                   marginBottom: '1rem'
                 }}>
-                  Features and Fees
+                  {t.featuresAndFees}
                 </h3>
                 
                 <div style={{ display: 'grid', gap: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                      Key Features (comma-separated)
+                      {t.keyFeaturesComma}
                     </label>
                     <textarea
                       value={formData.features}
@@ -699,7 +701,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
 
                     <div>
                       <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                        Chip Validity Period
+                        {t.chipValidityPeriod}
                       </label>
                       <input
                         type="text"
@@ -728,12 +730,12 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   color: '#111827',
                   marginBottom: '1rem'
                 }}>
-                  Tags
+                  {t.tags}
                 </h3>
                 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
-                    Tags (comma-separated)
+                    {t.tagsComma}
                   </label>
                   <input
                     type="text"
@@ -776,7 +778,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                   cursor: 'pointer'
                 }}
               >
-                Cancel
+                {t.cancel}
               </button>
               <button
                 type="submit"
@@ -799,11 +801,11 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                 {isSubmitting ? (
                   <>
                     <Loader2 style={{ width: '1rem', height: '1rem', animation: 'spin 1s linear infinite' }} />
-                    {isEditing ? 'Saving...' : 'Adding...'}
+                    {isEditing ? t.saving : t.adding}
                   </>
                 ) : (
                   <>
-                    {isEditing ? 'Save Changes' : 'Add Card'}
+                    {isEditing ? t.saveChanges : t.addNewCard}
                     {isEditing ? <Save style={{ width: '1rem', height: '1rem' }} /> : <Plus style={{ width: '1rem', height: '1rem' }} />}
                   </>
                 )}

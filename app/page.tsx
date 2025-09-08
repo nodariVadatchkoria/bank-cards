@@ -361,7 +361,7 @@ function CardCatalogContent() {
               }}
             >
               <Shield style={{ width: '1rem', height: '1rem' }} />
-              Check Chip Expiration
+              {t.checkChipExpiration}
             </button>
             
             <button
@@ -396,12 +396,12 @@ function CardCatalogContent() {
               {isSavingCard ? (
                 <>
                   <Loader2 style={{ width: '1rem', height: '1rem', animation: 'spin 1s linear infinite' }} />
-                  Adding...
+                  {t.adding}
                 </>
               ) : (
                 <>
                   <Plus style={{ width: '1rem', height: '1rem' }} />
-                  Add New Card
+                  {t.addNewCard}
                 </>
               )}
             </button>
