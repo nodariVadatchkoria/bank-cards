@@ -131,7 +131,7 @@
   },
   {
     "id": "blue-pattern",
-    "name": "Blue Pattern",
+    "name": "Blue Pattern TEST",
     "issuerNetwork": "MasterCard",
     "cardType": "Credit",
     "image": "/cards/blue-pattern.svg",
