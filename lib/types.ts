@@ -21,6 +21,7 @@ export type CardItem = {
     transaction?: string;
     foreign?: string;
   };
+  chipValidityPeriod?: string;  // e.g., "09/2030"
 };
 
 export type FilterState = {

@@ -1,13 +1,14 @@
 'use client';
 
 import { Suspense, useState, useEffect } from 'react';
-import { X, Plus, Loader2 } from 'lucide-react';
+import { X, Plus, Loader2, Shield } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import FilterPills from '@/components/FilterPills';
 import CardTile from '@/components/CardTile';
 import CardModal from '@/components/CardModal';
 import EditCardModal from '@/components/EditCardModal';
 import DeleteConfirmationModal from '@/components/DeleteConfirmationModal';
+import ChipExpirationModal from '@/components/ChipExpirationModal';
 import ScrollToTop from '@/components/ScrollToTop';
 import LanguageProvider from '@/components/LanguageProvider';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -29,6 +30,8 @@ function CardCatalogContent() {
   const [cardToEdit, setCardToEdit] = useState<CardItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSavingCard, setIsSavingCard] = useState(false);
+  const [isChipExpirationModalOpen, setIsChipExpirationModalOpen] = useState(false);
+  const [expiringCards, setExpiringCards] = useState<CardItem[]>([]);
 
   // Load cards from API on component mount
   useEffect(() => {
@@ -179,6 +182,30 @@ function CardCatalogContent() {
     setIsDeleteModalOpen(false);
   };
 
+  const checkChipExpiration = () => {
+    const currentDate = new Date();
+    const twoYearsFromNow = new Date();
+    twoYearsFromNow.setFullYear(currentDate.getFullYear() + 2);
+
+    const expiring = cards.filter(card => {
+      if (!card.chipValidityPeriod) return false;
+      
+      // Parse the chip validity period (format: MM/YYYY)
+      const [month, year] = card.chipValidityPeriod.split('/');
+      const expirationDate = new Date(parseInt(year), parseInt(month) - 1, 1);
+      
+      return expirationDate <= twoYearsFromNow;
+    });
+
+    setExpiringCards(expiring);
+    setIsChipExpirationModalOpen(true);
+  };
+
+  const closeChipExpirationModal = () => {
+    setIsChipExpirationModalOpen(false);
+    setExpiringCards([]);
+  };
+
   return (
     <>
       <style jsx>{`
@@ -309,6 +336,34 @@ function CardCatalogContent() {
           </div>
           
           <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            <button
+              onClick={checkChipExpiration}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.75rem 1rem',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+                color: 'white',
+                backgroundColor: '#059669',
+                border: 'none',
+                borderRadius: '0.5rem',
+                cursor: 'pointer',
+                boxShadow: '0 2px 4px rgba(5, 150, 105, 0.2)',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#047857';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#059669';
+              }}
+            >
+              <Shield style={{ width: '1rem', height: '1rem' }} />
+              Check Chip Expiration
+            </button>
+            
             <button
               onClick={openAddCardModal}
               disabled={isSavingCard}
@@ -512,6 +567,13 @@ function CardCatalogContent() {
           onConfirm={confirmDeleteCard}
         />
       )}
+
+      {/* Chip Expiration Modal */}
+      <ChipExpirationModal
+        isOpen={isChipExpirationModalOpen}
+        onClose={closeChipExpirationModal}
+        expiringCards={expiringCards}
+      />
       </div>
     </>
   );

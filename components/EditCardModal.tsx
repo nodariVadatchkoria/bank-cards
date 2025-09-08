@@ -22,6 +22,7 @@ interface FormData {
   annualFee: string;
   transactionFee: string;
   foreignFee: string;
+  chipValidityPeriod: string;
   configName: string;
   dpi: string;
   colorProfile: 'CMYK' | 'RGB';
@@ -42,6 +43,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
     annualFee: '',
     transactionFee: '',
     foreignFee: '',
+    chipValidityPeriod: '',
     configName: '',
     dpi: '300',
     colorProfile: 'CMYK',
@@ -89,6 +91,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
           annualFee: card.fees?.annual || '',
           transactionFee: card.fees?.transaction || '',
           foreignFee: card.fees?.foreign || '',
+          chipValidityPeriod: card.chipValidityPeriod || '',
           configName: card.printConfig?.name || '',
           dpi: card.printConfig?.dpi?.toString() || '300',
           colorProfile: card.printConfig?.colorProfile || 'CMYK',
@@ -110,6 +113,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
           annualFee: '',
           transactionFee: '',
           foreignFee: '',
+          chipValidityPeriod: '',
           configName: '',
           dpi: '300',
           colorProfile: 'CMYK',
@@ -184,6 +188,7 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
           transaction: formData.transactionFee || undefined,
           foreign: formData.foreignFee || undefined,
         },
+        chipValidityPeriod: formData.chipValidityPeriod || undefined,
       };
 
       onSave(cardData);
@@ -689,6 +694,26 @@ export default function EditCardModal({ isOpen, onClose, onSave, card }: EditCar
                           boxSizing: 'border-box'
                         }}
                         placeholder="e.g., Free, 2.7%"
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
+                        Chip Validity Period
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.chipValidityPeriod}
+                        onChange={(e) => handleInputChange('chipValidityPeriod', e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '0.5rem',
+                          border: '1px solid #d1d5db',
+                          borderRadius: '0.5rem',
+                          fontSize: '0.875rem',
+                          boxSizing: 'border-box'
+                        }}
+                        placeholder="e.g., 09/2030"
                       />
                     </div>
                   </div>

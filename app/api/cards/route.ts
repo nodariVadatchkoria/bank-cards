@@ -37,7 +37,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$0',
             transaction: 'No fees',
             foreign: '2%'
-          }
+          },
+          chipValidityPeriod: '12/2028'
         },
         {
           id: 'aurora-foil',
@@ -61,7 +62,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$95',
             transaction: 'No fees',
             foreign: '0%'
-          }
+          },
+          chipValidityPeriod: '06/2029'
         },
         {
           id: 'blue-pattern',
@@ -84,7 +86,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$0',
             transaction: 'No fees',
             foreign: '1%'
-          }
+          },
+          chipValidityPeriod: '03/2027'
         },
         {
           id: 'carbon-black',
@@ -108,7 +111,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$550',
             transaction: 'No fees',
             foreign: '0%'
-          }
+          },
+          chipValidityPeriod: '11/2030'
         },
         {
           id: 'emerald-luxury',
@@ -132,7 +136,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$450',
             transaction: 'No fees',
             foreign: '0%'
-          }
+          },
+          chipValidityPeriod: '08/2029'
         },
         {
           id: 'gold-foil',
@@ -156,7 +161,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$195',
             transaction: 'No fees',
             foreign: '0%'
-          }
+          },
+          chipValidityPeriod: '04/2028'
         },
         {
           id: 'midnight-gradient',
@@ -179,7 +185,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$0',
             transaction: 'No fees',
             foreign: '1%'
-          }
+          },
+          chipValidityPeriod: '01/2026'
         },
         {
           id: 'rose-gold-elite',
@@ -203,7 +210,8 @@ async function readCards(): Promise<CardItem[]> {
             annual: '$695',
             transaction: 'No fees',
             foreign: '0%'
-          }
+          },
+          chipValidityPeriod: '12/2031'
         }
       ];
     }
