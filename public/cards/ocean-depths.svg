@@ -1,0 +1,38 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0C4A6E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0369A1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0C4A6E;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="wavePattern" x="0" y="0" width="60" height="20" patternUnits="userSpaceOnUse">
+      <path d="M0,10 Q15,0 30,10 T60,10" stroke="rgba(34,211,238,0.4)" stroke-width="2" fill="none"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#oceanGradient)" rx="15"/>
+  
+  <!-- Wave pattern overlay -->
+  <rect width="300" height="200" fill="url(#wavePattern)" rx="15"/>
+  
+  <!-- Marine life silhouettes -->
+  <circle cx="80" cy="60" r="8" fill="rgba(34,211,238,0.3)"/>
+  <circle cx="120" cy="70" r="6" fill="rgba(34,211,238,0.3)"/>
+  <circle cx="200" cy="50" r="10" fill="rgba(34,211,238,0.3)"/>
+  <circle cx="250" cy="80" r="7" fill="rgba(34,211,238,0.3)"/>
+  
+  <!-- Card number area -->
+  <rect x="20" y="120" width="200" height="20" fill="rgba(255,255,255,0.1)" rx="3"/>
+  <text x="30" y="135" font-family="monospace" font-size="14" fill="white" opacity="0.9">**** **** **** 1357</text>
+  
+  <!-- Expiry date -->
+  <text x="20" y="160" font-family="Arial" font-size="12" fill="white" opacity="0.8">07/34</text>
+  
+  <!-- Cardholder name -->
+  <text x="20" y="180" font-family="Arial" font-size="12" fill="white" opacity="0.8">OCEAN DEPTHS</text>
+  
+  <!-- Visa logo area -->
+  <rect x="240" y="150" width="40" height="25" fill="rgba(255,255,255,0.9)" rx="3"/>
+  <text x="250" y="165" font-family="Arial" font-size="10" font-weight="bold" fill="#1A1F71">VISA</text>
+</svg>

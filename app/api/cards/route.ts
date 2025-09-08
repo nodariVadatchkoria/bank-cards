@@ -212,6 +212,254 @@ async function readCards(): Promise<CardItem[]> {
             foreign: '0%'
           },
           chipValidityPeriod: '12/2031'
+        },
+        {
+          id: 'platinum-waves',
+          name: 'Platinum Waves',
+          issuerNetwork: 'Visa',
+          cardType: 'Credit',
+          image: '/cards/platinum-waves.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Glossy',
+            special: ['Foil Platinum', 'Embossing']
+          },
+          description: 'Elegant platinum waves design with premium finish',
+          tags: ['platinum', 'waves', 'elegant', 'premium'],
+          features: ['Premium rewards', 'Travel insurance', 'Concierge service', 'Airport lounge access'],
+          fees: {
+            annual: '$395',
+            transaction: 'No fees',
+            foreign: '0%'
+          },
+          chipValidityPeriod: '08/2032'
+        },
+        {
+          id: 'crystal-clear',
+          name: 'Crystal Clear',
+          issuerNetwork: 'MasterCard',
+          cardType: 'Debit',
+          image: '/cards/crystal-clear.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Satin'
+          },
+          description: 'Transparent crystal-inspired design with modern appeal',
+          tags: ['crystal', 'transparent', 'modern', 'clear'],
+          features: ['No annual fee', 'Mobile banking', 'Budget tracking', 'Real-time notifications'],
+          fees: {
+            annual: '$0',
+            transaction: 'No fees',
+            foreign: '1.5%'
+          },
+          chipValidityPeriod: '06/2033'
+        },
+        {
+          id: 'cosmic-galaxy',
+          name: 'Cosmic Galaxy',
+          issuerNetwork: 'Visa',
+          cardType: 'Credit',
+          image: '/cards/cosmic-galaxy.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Glossy',
+            special: ['Holographic', 'Spot UV']
+          },
+          description: 'Stunning cosmic galaxy design with holographic effects',
+          tags: ['cosmic', 'galaxy', 'holographic', 'space'],
+          features: ['High rewards rate', 'Purchase protection', 'Extended warranty', 'Price protection'],
+          fees: {
+            annual: '$295',
+            transaction: 'No fees',
+            foreign: '0%'
+          },
+          chipValidityPeriod: '11/2032'
+        },
+        {
+          id: 'forest-emerald',
+          name: 'Forest Emerald',
+          issuerNetwork: 'MasterCard',
+          cardType: 'Credit',
+          image: '/cards/forest-emerald.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Matte',
+            special: ['Embossing']
+          },
+          description: 'Nature-inspired emerald forest design with organic patterns',
+          tags: ['forest', 'emerald', 'nature', 'organic'],
+          features: ['Eco-friendly rewards', 'Carbon offset program', 'Sustainable banking', 'Green investments'],
+          fees: {
+            annual: '$195',
+            transaction: 'No fees',
+            foreign: '0%'
+          },
+          chipValidityPeriod: '04/2034'
+        },
+        {
+          id: 'neon-circuit',
+          name: 'Neon Circuit',
+          issuerNetwork: 'Visa',
+          cardType: 'Debit',
+          image: '/cards/neon-circuit.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Glossy',
+            special: ['Neon effects', 'Spot UV']
+          },
+          description: 'Futuristic neon circuit board design for tech enthusiasts',
+          tags: ['neon', 'circuit', 'tech', 'futuristic'],
+          features: ['Digital wallet integration', 'Cryptocurrency support', 'Tech rewards', 'Online security'],
+          fees: {
+            annual: '$0',
+            transaction: 'No fees',
+            foreign: '1%'
+          },
+          chipValidityPeriod: '09/2033'
+        },
+        {
+          id: 'royal-purple',
+          name: 'Royal Purple',
+          issuerNetwork: 'MasterCard',
+          cardType: 'Credit',
+          image: '/cards/royal-purple.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Glossy',
+            special: ['Foil Purple', 'Embossing']
+          },
+          description: 'Regal purple design with royal elegance and sophistication',
+          tags: ['royal', 'purple', 'elegant', 'luxury'],
+          features: ['Premium concierge', 'Luxury travel benefits', 'Exclusive events', 'Personal shopping'],
+          fees: {
+            annual: '$750',
+            transaction: 'No fees',
+            foreign: '0%'
+          },
+          chipValidityPeriod: '03/2035'
+        },
+        {
+          id: 'ocean-depths',
+          name: 'Ocean Depths',
+          issuerNetwork: 'Visa',
+          cardType: 'Credit',
+          image: '/cards/ocean-depths.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Satin',
+            special: ['Gradient effects']
+          },
+          description: 'Deep ocean blue gradient design with marine life patterns',
+          tags: ['ocean', 'blue', 'marine', 'gradient'],
+          features: ['Travel rewards', 'Hotel partnerships', 'Cruise discounts', 'Adventure insurance'],
+          fees: {
+            annual: '$250',
+            transaction: 'No fees',
+            foreign: '0%'
+          },
+          chipValidityPeriod: '07/2034'
+        },
+        {
+          id: 'sunset-glow',
+          name: 'Sunset Glow',
+          issuerNetwork: 'MasterCard',
+          cardType: 'Debit',
+          image: '/cards/sunset-glow.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Glossy',
+            special: ['Gradient effects', 'Spot UV']
+          },
+          description: 'Warm sunset gradient design with golden hour aesthetics',
+          tags: ['sunset', 'glow', 'warm', 'golden'],
+          features: ['No annual fee', 'Cashback rewards', 'Mobile payments', 'Budget alerts'],
+          fees: {
+            annual: '$0',
+            transaction: 'No fees',
+            foreign: '2%'
+          },
+          chipValidityPeriod: '12/2033'
+        },
+        {
+          id: 'diamond-sparkle',
+          name: 'Diamond Sparkle',
+          issuerNetwork: 'Visa',
+          cardType: 'Credit',
+          image: '/cards/diamond-sparkle.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Glossy',
+            special: ['Diamond effects', 'Foil Silver', 'Embossing']
+          },
+          description: 'Luxurious diamond sparkle design with premium metallic finish',
+          tags: ['diamond', 'sparkle', 'luxury', 'metallic'],
+          features: ['Ultimate rewards', 'Private banking', 'Wealth management', 'Exclusive access'],
+          fees: {
+            annual: '$1200',
+            transaction: 'No fees',
+            foreign: '0%'
+          },
+          chipValidityPeriod: '05/2036'
+        },
+        {
+          id: 'minimalist-white',
+          name: 'Minimalist White',
+          issuerNetwork: 'MasterCard',
+          cardType: 'Debit',
+          image: '/cards/minimalist-white.svg',
+          printConfig: {
+            name: 'CMYK 300DPI w/ 3mm bleed',
+            dpi: 300,
+            colorProfile: 'CMYK',
+            bleedMm: 3,
+            safeMarginMm: 2,
+            finish: 'Matte'
+          },
+          description: 'Clean minimalist white design with subtle geometric patterns',
+          tags: ['minimalist', 'white', 'clean', 'simple'],
+          features: ['No annual fee', 'Simple banking', 'Easy budgeting', 'Mobile-first design'],
+          fees: {
+            annual: '$0',
+            transaction: 'No fees',
+            foreign: '1.5%'
+          },
+          chipValidityPeriod: '10/2034'
         }
       ];
     }

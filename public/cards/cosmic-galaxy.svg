@@ -1,0 +1,36 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="cosmicGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#1E1B4B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#312E81;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E1B4B;stop-opacity:1" />
+    </radialGradient>
+    <pattern id="starPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="white" opacity="0.6"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#cosmicGradient)" rx="15"/>
+  
+  <!-- Star pattern overlay -->
+  <rect width="300" height="200" fill="url(#starPattern)" rx="15"/>
+  
+  <!-- Galaxy swirl -->
+  <ellipse cx="150" cy="80" rx="80" ry="40" fill="none" stroke="rgba(147,51,234,0.4)" stroke-width="3"/>
+  <ellipse cx="150" cy="80" rx="60" ry="30" fill="none" stroke="rgba(147,51,234,0.3)" stroke-width="2"/>
+  
+  <!-- Card number area -->
+  <rect x="20" y="120" width="200" height="20" fill="rgba(255,255,255,0.1)" rx="3"/>
+  <text x="30" y="135" font-family="monospace" font-size="14" fill="white" opacity="0.9">**** **** **** 9012</text>
+  
+  <!-- Expiry date -->
+  <text x="20" y="160" font-family="Arial" font-size="12" fill="white" opacity="0.8">11/32</text>
+  
+  <!-- Cardholder name -->
+  <text x="20" y="180" font-family="Arial" font-size="12" fill="white" opacity="0.8">COSMIC GALAXY</text>
+  
+  <!-- Visa logo area -->
+  <rect x="240" y="150" width="40" height="25" fill="rgba(255,255,255,0.9)" rx="3"/>
+  <text x="250" y="165" font-family="Arial" font-size="10" font-weight="bold" fill="#1A1F71">VISA</text>
+</svg>

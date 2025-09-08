@@ -1,0 +1,36 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="royalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#581C87;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#581C87;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="crownPattern" x="0" y="0" width="40" height="30" patternUnits="userSpaceOnUse">
+      <path d="M20,5 L25,15 L30,10 L35,20 L20,25 L5,20 L10,10 L15,15 Z" fill="rgba(255,215,0,0.3)" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#royalGradient)" rx="15"/>
+  
+  <!-- Crown pattern overlay -->
+  <rect width="300" height="200" fill="url(#crownPattern)" rx="15"/>
+  
+  <!-- Central crown -->
+  <path d="M150,40 L160,60 L170,50 L180,70 L150,80 L120,70 L130,50 L140,60 Z" fill="rgba(255,215,0,0.6)" stroke="rgba(255,215,0,0.8)" stroke-width="2"/>
+  
+  <!-- Card number area -->
+  <rect x="20" y="120" width="200" height="20" fill="rgba(255,255,255,0.1)" rx="3"/>
+  <text x="30" y="135" font-family="monospace" font-size="14" fill="white" opacity="0.9">**** **** **** 2468</text>
+  
+  <!-- Expiry date -->
+  <text x="20" y="160" font-family="Arial" font-size="12" fill="white" opacity="0.8">03/35</text>
+  
+  <!-- Cardholder name -->
+  <text x="20" y="180" font-family="Arial" font-size="12" fill="white" opacity="0.8">ROYAL PURPLE</text>
+  
+  <!-- MasterCard logo area -->
+  <rect x="240" y="150" width="40" height="25" fill="rgba(255,255,255,0.9)" rx="3"/>
+  <text x="245" y="165" font-family="Arial" font-size="8" font-weight="bold" fill="#EB001B">Master</text>
+  <text x="245" y="170" font-family="Arial" font-size="8" font-weight="bold" fill="#F79E1B">Card</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="minimalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F9FAFB;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="geometricPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect x="15" y="15" width="10" height="10" fill="rgba(0,0,0,0.05)" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#minimalGradient)" rx="15" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <!-- Geometric pattern overlay -->
+  <rect width="300" height="200" fill="url(#geometricPattern)" rx="15"/>
+  
+  <!-- Minimalist line design -->
+  <line x1="50" y1="60" x2="250" y2="60" stroke="#6B7280" stroke-width="2" opacity="0.3"/>
+  <line x1="50" y1="80" x2="200" y2="80" stroke="#6B7280" stroke-width="1" opacity="0.2"/>
+  <line x1="50" y1="100" x2="180" y2="100" stroke="#6B7280" stroke-width="1" opacity="0.2"/>
+  
+  <!-- Card number area -->
+  <rect x="20" y="120" width="200" height="20" fill="rgba(0,0,0,0.05)" rx="3" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="30" y="135" font-family="monospace" font-size="14" fill="#374151" opacity="0.8">**** **** **** 0000</text>
+  
+  <!-- Expiry date -->
+  <text x="20" y="160" font-family="Arial" font-size="12" fill="#6B7280" opacity="0.7">10/34</text>
+  
+  <!-- Cardholder name -->
+  <text x="20" y="180" font-family="Arial" font-size="12" fill="#6B7280" opacity="0.7">MINIMALIST WHITE</text>
+  
+  <!-- MasterCard logo area -->
+  <rect x="240" y="150" width="40" height="25" fill="rgba(0,0,0,0.05)" rx="3" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="245" y="165" font-family="Arial" font-size="8" font-weight="bold" fill="#EB001B">Master</text>
+  <text x="245" y="170" font-family="Arial" font-size="8" font-weight="bold" fill="#F79E1B">Card</text>
+</svg>

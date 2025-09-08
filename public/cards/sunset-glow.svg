@@ -1,0 +1,47 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sunsetGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F97316;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#EAB308;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F97316;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sunGradient" cx="50%" cy="30%" r="40%">
+      <stop offset="0%" style="stop-color:#FEF3C7;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:0.3" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#sunsetGradient)" rx="15"/>
+  
+  <!-- Sun -->
+  <circle cx="150" cy="60" r="25" fill="url(#sunGradient)"/>
+  
+  <!-- Sun rays -->
+  <g stroke="#FEF3C7" stroke-width="2" opacity="0.6">
+    <line x1="150" y1="20" x2="150" y2="40"/>
+    <line x1="150" y1="100" x2="150" y2="80"/>
+    <line x1="110" y1="60" x2="130" y2="60"/>
+    <line x1="190" y1="60" x2="170" y2="60"/>
+    <line x1="125" y1="25" x2="140" y2="40"/>
+    <line x1="175" y1="25" x2="160" y2="40"/>
+    <line x1="125" y1="95" x2="140" y2="80"/>
+    <line x1="175" y1="95" x2="160" y2="80"/>
+  </g>
+  
+  <!-- Card number area -->
+  <rect x="20" y="120" width="200" height="20" fill="rgba(255,255,255,0.2)" rx="3"/>
+  <text x="30" y="135" font-family="monospace" font-size="14" fill="white" opacity="0.9">**** **** **** 9753</text>
+  
+  <!-- Expiry date -->
+  <text x="20" y="160" font-family="Arial" font-size="12" fill="white" opacity="0.8">12/33</text>
+  
+  <!-- Cardholder name -->
+  <text x="20" y="180" font-family="Arial" font-size="12" fill="white" opacity="0.8">SUNSET GLOW</text>
+  
+  <!-- MasterCard logo area -->
+  <rect x="240" y="150" width="40" height="25" fill="rgba(255,255,255,0.9)" rx="3"/>
+  <text x="245" y="165" font-family="Arial" font-size="8" font-weight="bold" fill="#EB001B">Master</text>
+  <text x="245" y="170" font-family="Arial" font-size="8" font-weight="bold" fill="#F79E1B">Card</text>
+</svg>

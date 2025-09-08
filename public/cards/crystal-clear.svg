@@ -1,0 +1,33 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="crystalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0F9FF;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#E0F2FE;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#BAE6FD;stop-opacity:0.7" />
+    </linearGradient>
+    <pattern id="crystalPattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <polygon points="15,5 25,15 15,25 5,15" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#crystalGradient)" rx="15"/>
+  
+  <!-- Crystal pattern overlay -->
+  <rect width="300" height="200" fill="url(#crystalPattern)" rx="15"/>
+  
+  <!-- Card number area -->
+  <rect x="20" y="120" width="200" height="20" fill="rgba(255,255,255,0.2)" rx="3"/>
+  <text x="30" y="135" font-family="monospace" font-size="14" fill="#1E40AF" opacity="0.9">**** **** **** 5678</text>
+  
+  <!-- Expiry date -->
+  <text x="20" y="160" font-family="Arial" font-size="12" fill="#1E40AF" opacity="0.8">06/33</text>
+  
+  <!-- Cardholder name -->
+  <text x="20" y="180" font-family="Arial" font-size="12" fill="#1E40AF" opacity="0.8">CRYSTAL CLEAR</text>
+  
+  <!-- MasterCard logo area -->
+  <rect x="240" y="150" width="40" height="25" fill="rgba(255,255,255,0.9)" rx="3"/>
+  <text x="245" y="165" font-family="Arial" font-size="8" font-weight="bold" fill="#EB001B">Master</text>
+  <text x="245" y="170" font-family="Arial" font-size="8" font-weight="bold" fill="#F79E1B">Card</text>
+</svg>
