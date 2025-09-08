@@ -96,7 +96,7 @@ export const translations: Record<Language, Translations> = {
   en: {
     // Header
     title: "Card Catalog",
-    subtitle: "Explore our comprehensive collection of bank cards. Browse designs, compare features, and find the perfect card for your needs.",
+    subtitle: "Explore our collection of bank cards. Browse designs, compare features, and find the perfect card for your needs.",
     searchPlaceholder: "Search cards...",
     
     // Filters
@@ -187,7 +187,7 @@ export const translations: Record<Language, Translations> = {
   ka: {
     // Header
     title: "ბარათების კატალოგი",
-    subtitle: "გამოიკვლიეთ ჩვენი საბანკო ბარათების ყრთამი კოლექცია. დაათვალიერეთ დიზაინები, შეადარეთ ფუნქციები და იპოვეთ თქვენი საჭიროებისთვის სრულყოფილი ბარათი.",
+    subtitle: "გამოიკვლიეთ ჩვენი საბანკო ბარათების კოლექცია. დაათვალიერეთ დიზაინები, შეადარეთ ფუნქციები და იპოვეთ თქვენი საჭიროებისთვის სრულყოფილი ბარათი.",
     searchPlaceholder: "ბარათების ძიება...",
     
     // Filters
