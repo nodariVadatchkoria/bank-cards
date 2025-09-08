@@ -25,7 +25,6 @@ export interface Translations {
   // Modal sections
   configurationDetails: string;
   cardFeatures: string;
-  specialEffects: string;
   feeInformation: string;
   tags: string;
   
@@ -122,7 +121,6 @@ export const translations: Record<Language, Translations> = {
     // Modal sections
     configurationDetails: "Configuration Details",
     cardFeatures: "Card Features",
-    specialEffects: "Special Effects",
     feeInformation: "Fee Information",
     tags: "Tags",
     
@@ -217,7 +215,6 @@ export const translations: Record<Language, Translations> = {
     // Modal sections
     configurationDetails: "კონფიგურაციის დეტალები",
     cardFeatures: "ბარათის ფუნქციები",
-    specialEffects: "სპეციალური ეფექტები",
     feeInformation: "საკომისიო ინფორმაცია",
     tags: "ტეგები",
     
