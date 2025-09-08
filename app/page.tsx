@@ -221,7 +221,7 @@ function CardCatalogContent() {
       <div style={{ minHeight: '100vh' }}>
       {/* Header */}
       <header style={{ 
-        backgroundColor: '#fbbf24', 
+        backgroundColor: '#00adee', 
         boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
         borderBottom: '1px solid rgba(229, 231, 235, 0.5)' 
       }}>
