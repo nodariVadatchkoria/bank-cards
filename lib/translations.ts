@@ -49,9 +49,6 @@ export interface Translations {
   // Scroll to top
   scrollToTop: string;
   
-  // Close
-  close: string;
-  
   // Language
   language: string;
   english: string;
@@ -145,9 +142,6 @@ export const translations: Record<Language, Translations> = {
     // Scroll to top
     scrollToTop: "Scroll to top",
     
-    // Close
-    close: "Close modal",
-    
     // Language
     language: "Language",
     english: "English",
@@ -238,9 +232,6 @@ export const translations: Record<Language, Translations> = {
     
     // Scroll to top
     scrollToTop: "ზემოთ ასვლა",
-    
-    // Close
-    close: "მოდალის დახურვა",
     
     // Language
     language: "ენა",
