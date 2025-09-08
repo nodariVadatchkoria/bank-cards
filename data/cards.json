@@ -127,7 +127,8 @@
       "annual": "$250",
       "transaction": "Free",
       "foreign": "Free"
-    }
+    },
+    "chipValidityPeriod": "09/2026"
   },
   {
     "id": "blue-pattern",
