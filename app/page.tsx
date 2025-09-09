@@ -15,14 +15,12 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { CardItem } from '@/lib/types';
 import { useQueryState } from '@/lib/useQueryState';
 import { useLanguage } from '@/lib/useLanguage';
-import { useScrollDirection } from '@/lib/useScrollDirection';
 import { filterCards, hasActiveFilters, countActiveFilters, createEmptyFilters } from '@/lib/filtering';
 import cardsData from '@/data/cards.json';
 
 function CardCatalogContent() {
   const { filters, updateFilters, setFilters } = useQueryState();
   const { t, mounted } = useLanguage();
-  const { scrollDirection, isScrolled } = useScrollDirection();
   const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -220,55 +218,23 @@ function CardCatalogContent() {
           }
         }
         
-        .header-transition {
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .header-visible {
-          transform: translateY(0);
-          opacity: 1;
-        }
-        
-        .header-hidden {
-          transform: translateY(-100%);
-          opacity: 0;
-        }
-        
         .main-content {
-          padding-top: 0;
-          transition: padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .main-content.with-header {
-          padding-top: 8rem;
+          padding-top: 3rem !important;
         }
         
         @media (max-width: 768px) {
-          .main-content.with-header {
-            padding-top: 6rem;
+          .main-content {
+            padding-top: 10rem !important;
           }
         }
       `}</style>
       <div style={{ minHeight: '100vh' }}>
       {/* Header */}
-      <header 
-        className={`header-transition ${scrollDirection === 'down' && isScrolled ? 'header-hidden' : 'header-visible'}`}
-        style={{ 
-          backgroundColor: 'rgba(0, 173, 238, 0.95)', 
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
-          borderBottom: '1px solid rgba(229, 231, 235, 0.5)',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          transform: 'translateY(0)',
-          opacity: 1,
-          transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-        }}
-      >
+      <header style={{ 
+        backgroundColor: '#00adee', 
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
+        borderBottom: '1px solid rgba(229, 231, 235, 0.5)' 
+      }}>
         <div style={{ 
           maxWidth: '80rem', 
           margin: '0 auto', 
@@ -350,15 +316,12 @@ function CardCatalogContent() {
       </header>
 
       {/* Main Content */}
-      <main 
-        className={`main-content ${scrollDirection === 'down' && isScrolled ? '' : 'with-header'}`}
-        style={{ 
-          maxWidth: '80rem', 
-          margin: '0 auto', 
-          padding: '2rem 1rem',
-          textAlign: 'center'
-        }}
-      >
+      <main className="main-content" style={{ 
+        maxWidth: '80rem', 
+        margin: '0 auto', 
+        padding: '9rem 1rem 2rem 1rem',
+        textAlign: 'center'
+      }}>
         {/* Results header */}
         <div style={{ 
           display: 'flex', 
@@ -601,7 +564,7 @@ function CardCatalogContent() {
           fontSize: '0.875rem'
         }}>
           <p style={{ margin: '0 0 0.5rem 0' }}>
-            © 2024 Card Catalog. All rights reserved.
+            © 2025 Card Catalog. All rights reserved.
           </p>
           <p style={{ margin: '0', fontSize: '0.75rem' }}>
             Built with Next.js and React
