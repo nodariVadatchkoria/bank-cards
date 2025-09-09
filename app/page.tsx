@@ -219,18 +219,79 @@ function CardCatalogContent() {
         }
         
         .main-content {
-          padding-top: 3rem !important;
+          padding-top: 8rem !important;
         }
         
         @media (max-width: 768px) {
           .main-content {
-            padding-top: 10rem !important;
+            padding-top: 12rem !important;
+          }
+          
+          .action-buttons {
+            flex-direction: column !important;
+            gap: 0.5rem !important;
+            width: 100% !important;
+          }
+          
+          .action-buttons button {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 1rem !important;
+            font-size: 0.9rem !important;
+          }
+          
+          .results-header {
+            flex-direction: column !important;
+            gap: 1rem !important;
+            align-items: center !important;
+          }
+          
+          .results-header > div:first-child {
+            width: 100% !important;
+            text-align: center !important;
+          }
+          
+          .app-header {
+            padding: 1rem 0.5rem !important;
+          }
+          
+          .app-header h1 {
+            font-size: 1.5rem !important;
+            margin-bottom: 0.25rem !important;
+          }
+          
+          .app-header p {
+            font-size: 0.85rem !important;
+            padding: 0 0.5rem !important;
+          }
+          
+          .filter-container {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.5rem !important;
+            max-width: 100% !important;
+            padding: 0 0.25rem !important;
+          }
+          
+          .language-switcher-container {
+            top: 0.5rem !important;
+            right: 0.5rem !important;
+          }
+          
+          .language-switcher-container button {
+            padding: 0.375rem 0.5rem !important;
+            font-size: 0.75rem !important;
+            gap: 0.25rem !important;
+          }
+          
+          .language-switcher-container button svg {
+            width: 0.875rem !important;
+            height: 0.875rem !important;
           }
         }
       `}</style>
       <div style={{ minHeight: '100vh' }}>
       {/* Header */}
-      <header style={{ 
+      <header className="app-header" style={{ 
         backgroundColor: '#00adee', 
         boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
         borderBottom: '1px solid rgba(229, 231, 235, 0.5)' 
@@ -242,7 +303,7 @@ function CardCatalogContent() {
           textAlign: 'center'
         }}>
           {/* Language Switcher */}
-          <div style={{ 
+          <div className="language-switcher-container" style={{ 
             position: 'absolute', 
             top: '1rem', 
             right: '1rem',
@@ -289,7 +350,7 @@ function CardCatalogContent() {
           
           {/* Filters */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ 
+            <div className="filter-container" style={{ 
               display: 'grid', 
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
               gap: '1rem',
@@ -319,11 +380,11 @@ function CardCatalogContent() {
       <main className="main-content" style={{ 
         maxWidth: '80rem', 
         margin: '0 auto', 
-        padding: '9rem 1rem 2rem 1rem',
+        padding: '8rem 1rem 2rem 1rem',
         textAlign: 'center'
       }}>
         {/* Results header */}
-        <div style={{ 
+        <div className="results-header" style={{ 
           display: 'flex', 
           alignItems: 'center', 
           justifyContent: 'space-between', 
@@ -345,7 +406,13 @@ function CardCatalogContent() {
             }
           </div>
           
-          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+          <div className="action-buttons" style={{ 
+            display: 'flex', 
+            gap: '0.75rem', 
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
             <button
               onClick={checkChipExpiration}
               style={{

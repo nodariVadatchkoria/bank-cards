@@ -25,15 +25,15 @@ export default function LanguageSwitcher() {
         color: '#374151'
       }}>
         <Globe style={{ width: '1rem', height: '1rem' }} />
-        <span>English</span>
+        <span>ENG</span>
         <ChevronDown style={{ width: '1rem', height: '1rem' }} />
       </div>
     );
   }
 
-  const languages: Array<{ code: Language; name: string; nativeName: string }> = [
-    { code: 'en', name: t.english, nativeName: 'English' },
-    { code: 'ka', name: t.georgian, nativeName: 'ქართული' }
+  const languages: Array<{ code: Language; name: string; nativeName: string; shortName: string }> = [
+    { code: 'en', name: t.english, nativeName: 'English', shortName: 'ENG' },
+    { code: 'ka', name: t.georgian, nativeName: 'ქართული', shortName: 'GEO' }
   ];
 
   const currentLanguage = languages.find(lang => lang.code === language);
@@ -75,7 +75,7 @@ export default function LanguageSwitcher() {
         aria-label={t.language}
       >
         <Globe style={{ width: '1rem', height: '1rem' }} />
-        <span>{currentLanguage?.nativeName}</span>
+        <span>{currentLanguage?.shortName}</span>
         <ChevronDown 
           style={{ 
             width: '1rem', 
@@ -146,9 +146,9 @@ export default function LanguageSwitcher() {
                   }
                 }}
               >
-                <div style={{ fontWeight: '500' }}>{lang.nativeName}</div>
+                <div style={{ fontWeight: '500' }}>{lang.shortName}</div>
                 <div style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '0.125rem' }}>
-                  {lang.name}
+                  {lang.nativeName}
                 </div>
               </button>
             ))}
