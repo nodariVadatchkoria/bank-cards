@@ -539,6 +539,29 @@ function CardCatalogContent() {
       {/* Scroll to Top Button */}
       <ScrollToTop />
 
+      {/* Footer */}
+      <footer style={{
+        backgroundColor: '#f8fafc',
+        borderTop: '1px solid #e2e8f0',
+        padding: '2rem 1rem',
+        marginTop: '4rem',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          maxWidth: '80rem',
+          margin: '0 auto',
+          color: '#64748b',
+          fontSize: '0.875rem'
+        }}>
+          <p style={{ margin: '0 0 0.5rem 0' }}>
+            © 2024 Card Catalog. All rights reserved.
+          </p>
+          <p style={{ margin: '0', fontSize: '0.75rem' }}>
+            Built with Next.js and React
+          </p>
+        </div>
+      </footer>
+
       {/* Card Modal */}
       {selectedCard && (
         <CardModal
